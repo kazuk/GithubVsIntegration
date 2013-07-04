@@ -1,5 +1,5 @@
 ﻿
-namespace GitHubClient 
+namespace GithubClient 
 {
 // ReSharper disable InconsistentNaming
 

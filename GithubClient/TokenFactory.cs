@@ -1,5 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using GithubClient.HttpHandlerUtilities;
+using GithubClient.Models;
 using Newtonsoft.Json;
 
 namespace GithubClient

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GithubClient
+namespace GithubClient.HttpHandlerUtilities
 {
     internal class BasicAuthHandler : DelegatingHandler
     {
@@ -37,27 +37,6 @@ namespace GithubClient
             var byteArray = System.Text.Encoding.UTF8.GetBytes(_username + ":" + _password);
             var base64String = Convert.ToBase64String(byteArray);
             return new AuthenticationHeaderValue("Basic", base64String);
-        }
-    }
-
-    internal class UserAgentHandler : DelegatingHandler
-    {
-        private readonly string _userAgent;
-        public UserAgentHandler(string userAgent)
-            : this(userAgent,new HttpClientHandler())
-        {
-            
-        }
-
-        public UserAgentHandler(string userAgent, HttpMessageHandler httpClientHandler) : base(httpClientHandler)
-        {
-            _userAgent = userAgent;
-        }
-
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            request.Headers.Add("user-agent",_userAgent);
-            return base.SendAsync(request, cancellationToken);
         }
     }
 }

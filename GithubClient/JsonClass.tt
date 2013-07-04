@@ -1,0 +1,108 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="$(ProjectDir)..\JsonParsers\bin\Debug\JsonParsers.dll" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="JsonParsers" #>
+<#@ output extension=".cs" #>
+<# TypeRepository.Clear(); #>
+
+namespace GitHubClient 
+{
+// ReSharper disable InconsistentNaming
+
+<# 
+
+RegisterJsonClass( "Authorization", ()=>{#>
+{
+ "id":2972767,
+ "url":"https://api.github.com/authorizations/2972767",
+ "app":{
+  "name":"admin script (API)",
+  "url":"http://developer.github.com/v3/oauth/#oauth-authorizations-api",
+  "client_id":"いやん"
+ },
+ "token":"みちゃいや",
+ "note":"admin script",
+ "note_url":null,
+ "created_at":"2013-07-03T22:13:22Z",
+ "updated_at":"2013-07-03T22:13:22Z",
+ "scopes":["public_repo"]
+}
+<#} );
+
+#>
+
+<#
+	PushIndent("    ");
+	foreach( var type in TypeRepository.NamedTypes() )
+	{
+		RenderJsonClass( type );
+	}
+
+	while( tempTypes.Count !=0 )
+	{
+		var typeName = tempTypes.Dequeue();
+		var type = TypeRepository.GetType(typeName);
+		if( type!=null ) RenderJsonClass( type );
+	}
+
+	PopIndent();
+#>
+}
+<#+
+	Queue<string> tempTypes = new Queue<string>();
+	List<string> generatedTypes = new List<string>();
+
+	public void RenderJsonClass( JsonObjectType type )
+	{
+#>
+internal class <#=type.Name#>
+{
+<#+
+		foreach( var field in type.Fields ) 
+		{
+			var fieldType = field.Value.TypeName;
+			if( fieldType=="null" )
+			{
+				Warning( type.Name + " " + field.Key + " の型が判別できませんでした。 object で仮定されました" );
+				fieldType = "object";
+			}
+			var temptype = TypeRepository.GetType( fieldType);
+			if( temptype!=null ) {
+				tempTypes.Enqueue( temptype.Name );
+			}
+#>
+	public <#=fieldType#> <#=field.Key#> { get; set; }
+<#+
+		}
+#>
+}
+<#+
+	}
+
+
+	public void RegisterJsonClass( string name, Action action )
+	{
+#>
+/**** <#=name#>
+<#+
+		var currentLength = GenerationEnvironment.Length;
+		action();
+		var jsonText = GenerationEnvironment.ToString( currentLength, GenerationEnvironment.Length-currentLength );
+#>
+*/
+<#+
+		JsonParser parser = new JsonParser();
+		var jsobj = parser.Parse( jsonText ) as ObjectValue;
+		if( jsobj!=null ) {
+			TypeRepository.CreateTypeWithName( name, jsobj );
+		}
+		else
+		{
+			Error( "parser returned not ObjectValue");
+		}
+	}
+
+#>

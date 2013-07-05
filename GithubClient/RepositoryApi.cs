@@ -19,9 +19,20 @@ namespace GithubClient
             Contract.Requires(github != null);
             Contract.Requires(cancellationToken != null);
 
-            const string userRepos = "user/repos";
-            return await github.GetJsonObjectAsync<Repository[]>(userRepos, cancellationToken);
+            var addr = ApiAddr.UserRepos();
+            return await github.GetJsonObjectAsync<Repository[]>(addr, cancellationToken);
         }
+
+        public static async Task<Repository[]> ListOrgRepository(
+            this Github github,
+            string org,
+            CancellationToken cancellationToken)
+        {
+            var addr = ApiAddr.OrgsOrgRepos(org);
+            return await github.GetJsonObjectAsync<Repository[]>(addr, cancellationToken);
+        }
+
+
 
         public static async Task<CreateRepositoryResult> CreateRepository(
             this Github github,
@@ -37,20 +48,20 @@ namespace GithubClient
                     {"name", name},
                 };
             Github.CopyOptions(createOptions, createParams);
-            const string apiAdder = "user/repos";
+            var addr = ApiAddr.UserRepos();
 
             return await github.PostJsonIoAsync<Dictionary<string, object>, CreateRepositoryResult>(
-                    apiAdder, createParams, cancellationToken);
+                    addr, createParams, cancellationToken);
         }
 
         public static async Task<bool> DeleteRepository(
             this Github github,
-            int ownerUserId,
-            int repositoryId,
+            string ownerUserId,
+            string repositoryId,
             CancellationToken cancellationToken)
         {
             Contract.Requires(github != null);
-            string apiAddr = string.Format("repos/{0}/{1}", ownerUserId, repositoryId);
+            var apiAddr = ApiAddr.ReposOwnerRepo(ownerUserId, repositoryId);
             return await github.DeleteAsync(apiAddr, HttpStatusCode.NoContent, cancellationToken);
         }
     }

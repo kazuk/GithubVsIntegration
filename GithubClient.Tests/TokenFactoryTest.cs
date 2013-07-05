@@ -23,6 +23,8 @@ namespace GithubClient.Tests
             var cancellationToken = new CancellationToken();
             var repos = await github.ListUserRepository(cancellationToken);
             repos.IsNotNull();
+            repos = await github.ListUserRepository(cancellationToken);
+            repos.IsNotNull();
         }
     }
 }

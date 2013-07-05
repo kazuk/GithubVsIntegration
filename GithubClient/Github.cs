@@ -65,6 +65,9 @@ namespace GithubClient
         /// <param name="apiAddr"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        /// <remarks>CacheManagerがcacheEntryを返すようならキャッシュ結果を使います
+        /// http://developer.github.com/v3/ 
+        /// Conditional requests を参照</remarks>
         public async Task<HttpResponseMessage> GetAsync(string apiAddr, CancellationToken cancellationToken)
         {
             Contract.Requires(apiAddr!=null);
@@ -74,8 +77,31 @@ namespace GithubClient
             cancellationToken.ThrowIfCancellationRequested();
 
             var requestUri = String.Format("{0}{1}", ApiHost, apiAddr);
-            var res = await _client.GetAsync(requestUri, cancellationToken);
-            return res;
+
+            var cacheEntry = CacheManager.GetCacheEntry(requestUri);
+            if (cacheEntry == null)
+            {
+                var res = await _client.GetAsync(requestUri, cancellationToken);
+                CacheManager.CreateEntry(requestUri, res.Headers.CacheControl, res.Headers.ETag.Tag, await res.Content.ReadAsStringAsync());
+                return res;
+            }
+            else
+            {
+                var message = new HttpRequestMessage(HttpMethod.Get, requestUri);
+                message.Headers.Add("If-None-Match", cacheEntry.ETag); 
+                var res = await _client.SendAsync(message, cancellationToken);
+                if (res.StatusCode == HttpStatusCode.NotModified)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.OK)
+                        {
+                            Content = new StringContent(cacheEntry.Content)
+                        };
+                }
+                cacheEntry.Content = await res.Content.ReadAsStringAsync();
+                cacheEntry.ETag = res.Headers.ETag.Tag;
+                CacheManager.UpdateEntry(res.Headers.CacheControl, cacheEntry);
+                return res;
+            }
         }
 
         /// <summary>

@@ -12,8 +12,6 @@ namespace GithubClient
     /// </summary>
     public static class RepositoryCommentApi
     {
-        private const string _commentAddrFormat = "repos/{0}/{1}/comments/{2}";
-
         /// <summary>
         /// list comment on repository
         /// </summary>

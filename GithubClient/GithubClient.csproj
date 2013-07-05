@@ -34,6 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="ApiAddr.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ApiAddr.cs</LastGenOutput>
+    </None>
     <None Include="app.config" />
     <None Include="JsonClass.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -42,11 +46,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiAddr.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApiAddr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CacheEntry.cs" />
+    <Compile Include="CacheManager.cs" />
     <Compile Include="Github.cs" />
     <Compile Include="HttpHandlerUtilities\AuthTokenHandler.cs" />
     <Compile Include="HttpHandlerUtilities\BasicAuthHandler.cs" />
     <Compile Include="HttpHandlerUtilities\HttpClientExtention.cs" />
     <Compile Include="HttpHandlerUtilities\UserAgentHandler.cs" />
+    <Compile Include="ICacheProvider.cs" />
     <Compile Include="IssueApi.cs" />
     <Compile Include="JsonClass.cs">
       <AutoGen>True</AutoGen>

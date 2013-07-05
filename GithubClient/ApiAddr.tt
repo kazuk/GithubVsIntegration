@@ -1,0 +1,365 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+// ReSharper disable InconsistentNaming
+
+namespace GithubClient
+{
+	internal static class ApiAddr
+	{
+<# 
+PushIndent("        ");
+AddressFormats( ()=>{#>
+
+// Activity Apis
+GET /events
+GET /repos/:owner/:repo/events
+GET /repos/:owner/:repo/issues/events
+GET /networks/:owner/:repo/events
+GET /orgs/:org/events
+GET /users/:user/received_events
+GET /users/:user/received_events/public
+GET /users/:user/events
+GET /users/:user/events/public
+GET /users/:user/events/orgs/:org
+
+GET /feeds
+GET /notifications
+GET /repos/:owner/:repo/notifications
+PUT /notifications
+PUT /repos/:owner/:repo/notifications
+GET /notifications/threads/:id
+PATCH /notifications/threads/:id
+GET /notifications/threads/:id/subscription
+PUT /notifications/threads/:id/subscription
+DELETE /notifications/threads/:id/subscription
+
+GET /repos/:owner/:repo/stargazers
+GET /users/:user/starred
+GET /user/starred
+GET /user/starred/:owner/:repo
+PUT /user/starred/:owner/:repo
+DELETE /user/starred/:owner/:repo
+
+GET /repos/:owner/:repo/subscribers
+GET /users/:user/subscriptions
+GET /user/subscriptions
+GET /repos/:owner/:repo/subscription
+PUT /repos/:owner/:repo/subscription
+DELETE /repos/:owner/:repo/subscription
+
+// Gists
+
+GET /users/:user/gists
+GET /gists
+GET /gists/public
+GET /gists/starred
+GET /gists/:id
+POST /gists
+PATCH /gists/:id
+PUT /gists/:id/star
+DELETE /gists/:id/star
+GET /gists/:id/star
+POST /gists/:id/forks
+DELETE /gists/:id
+
+GET /gists/:gist_id/comments
+GET /gists/:gist_id/comments/:id
+POST /gists/:gist_id/comments
+PATCH /gists/:gist_id/comments/:id
+DELETE /gists/:gist_id/comments/:id
+
+// Git Data Apis
+GET /repos/:owner/:repo/git/blobs/:sha
+POST /repos/:owner/:repo/git/blobs
+GET /repos/:owner/:repo/git/commits/:sha
+POST /repos/:owner/:repo/git/commits
+GET /repos/:owner/:repo/git/refs/:ref
+GET /repos/:owner/:repo/git/refs
+GET /repos/:owner/:repo/git/refs/tags
+POST /repos/:owner/:repo/git/refs
+PATCH /repos/:owner/:repo/git/refs/:ref
+DELETE /repos/:owner/:repo/git/refs/:ref
+GET /repos/:owner/:repo/git/tags/:sha
+POST /repos/:owner/:repo/git/tags
+
+GET /repos/:owner/:repo/git/trees/:sha
+POST /repos/:owner/:repo/git/trees
+
+// Issues
+GET /issues
+GET /user/issues
+GET /orgs/:org/issues
+GET /repos/:owner/:repo/issues
+GET /repos/:owner/:repo/issues/:number
+POST /repos/:owner/:repo/issues
+PATCH /repos/:owner/:repo/issues/:number
+
+GET /repos/:owner/:repo/assignees
+GET /repos/:owner/:repo/assignees/:assignee
+
+GET /repos/:owner/:repo/issues/:number/comments
+GET /repos/:owner/:repo/issues/comments
+GET /repos/:owner/:repo/issues/comments/:id
+POST /repos/:owner/:repo/issues/:number/comments
+PATCH /repos/:owner/:repo/issues/comments/:id
+DELETE /repos/:owner/:repo/issues/comments/:id
+
+GET /repos/:owner/:repo/issues/:issue_number/events
+GET /repos/:owner/:repo/issues/events
+GET /repos/:owner/:repo/issues/events/:id
+
+GET /repos/:owner/:repo/labels
+GET /repos/:owner/:repo/labels/:name
+POST /repos/:owner/:repo/labels
+PATCH /repos/:owner/:repo/labels/:name
+DELETE /repos/:owner/:repo/labels/:name
+GET /repos/:owner/:repo/issues/:number/labels
+POST /repos/:owner/:repo/issues/:number/labels
+DELETE /repos/:owner/:repo/issues/:number/labels/:name
+PUT /repos/:owner/:repo/issues/:number/labels
+DELETE /repos/:owner/:repo/issues/:number/labels
+GET /repos/:owner/:repo/milestones/:number/labels
+
+GET /repos/:owner/:repo/milestones
+GET /repos/:owner/:repo/milestones/:number
+POST /repos/:owner/:repo/milestones
+PATCH /repos/:owner/:repo/milestones/:number
+DELETE /repos/:owner/:repo/milestones/:number
+
+// Orgs
+GET /users/:user/orgs
+GET /user/orgs
+GET /orgs/:org
+PATCH /orgs/:org
+
+GET /orgs/:org/members
+GET /orgs/:org/members/:user
+DELETE /orgs/:org/members/:user
+GET /orgs/:org/public_members
+GET /orgs/:org/public_members/:user
+PUT /orgs/:org/public_members/:user
+DELETE /orgs/:org/public_members/:user
+
+GET /orgs/:org/teams
+GET /teams/:id
+POST /orgs/:org/teams
+PATCH /teams/:id
+DELETE /teams/:id
+GET /teams/:id/members
+GET /teams/:id/members/:user
+PUT /teams/:id/members/:user
+DELETE /teams/:id/members/:user
+GET /teams/:id/repos
+GET /teams/:id/repos/:owner/:repo
+PUT /teams/:id/repos/:org/:repo
+DELETE /teams/:id/repos/:owner/:repo
+
+// Pull requests
+GET /repos/:owner/:repo/pulls
+GET /repos/:owner/:repo/pulls/:number
+POST /repos/:owner/:repo/pulls
+PATCH /repos/:owner/:repo/pulls/:number
+GET /repos/:owner/:repo/pulls/:number/commits
+GET /repos/:owner/:repo/pulls/:number/files
+GET /repos/:owner/:repo/pulls/:number/merge
+PUT /repos/:owner/:repo/pulls/:number/merge
+
+GET /repos/:owner/:repo/pulls/:number/comments
+GET /repos/:owner/:repo/pulls/comments
+GET /repos/:owner/:repo/pulls/comments/:number
+POST /repos/:owner/:repo/pulls/:number/comments
+PATCH /repos/:owner/:repo/pulls/comments/:number
+DELETE /repos/:owner/:repo/pulls/comments/:number
+
+
+// Repository Apis
+
+GET /user/repos
+GET /users/:user/repos
+GET /orgs/:org/repos
+GET /repositories
+POST /user/repos
+POST /orgs/:org/repos
+GET /repos/:owner/:repo
+PATCH /repos/:owner/:repo
+GET /repos/:owner/:repo/contributors
+GET /repos/:owner/:repo/tags
+GET /repos/:owner/:repo/branches
+GET /repos/:owner/:repo/branches/:branch
+DELETE /repos/:owner/:repo
+
+
+GET /repos/:owner/:repo/collaborators
+GET /repos/:owner/:repo/collaborators/:user
+PUT /repos/:owner/:repo/collaborators/:user
+DELETE /repos/:owner/:repo/collaborators/:user
+
+
+GET /repos/:owner/:repo/comments
+GET /repos/:owner/:repo/commits/:sha/comments
+POST /repos/:owner/:repo/commits/:sha/comments
+GET /repos/:owner/:repo/comments/:id
+PATCH /repos/:owner/:repo/comments/:id
+DELETE /repos/:owner/:repo/comments/:id
+
+GET /repos/:owner/:repo/commits
+GET /repos/:owner/:repo/commits/:sha
+
+GET /repos/:owner/:repo/readme
+GET /repos/:owner/:repo/contents/:path
+PUT /repos/:owner/:repo/contents/:path
+PUT /repos/:owner/:repo/contents/:path
+DELETE /repos/:owner/:repo/contents/:path
+GET /repos/:owner/:repo/:archive_format/:ref
+
+GET /repos/:owner/:repo/downloads
+GET /repos/:owner/:repo/downloads/:id
+POST /repos/:owner/:repo/downloads
+DELETE /repos/:owner/:repo/downloads/:id
+
+GET /repos/:owner/:repo/forks
+POST /repos/:owner/:repo/forks
+
+GET /repos/:owner/:repo/keys
+GET /repos/:owner/:repo/keys/:id
+POST /repos/:owner/:repo/keys
+PATCH /repos/:owner/:repo/keys/:id
+DELETE /repos/:owner/:repo/keys/:id
+
+GET /repos/:owner/:repo/hooks
+GET /repos/:owner/:repo/hooks/:id
+POST /repos/:owner/:repo/hooks
+PATCH /repos/:owner/:repo/hooks/:id
+POST /repos/:owner/:repo/hooks/:id/tests
+DELETE /repos/:owner/:repo/hooks/:id
+
+POST /repos/:owner/:repo/merges
+
+GET /repos/:owner/:repo/stats/contributors
+GET /repos/:owner/:repo/stats/commit_activity
+GET /repos/:owner/:repo/stats/code_frequency
+GET /repos/:owner/:repo/stats/participation
+GET /repos/:owner/:repo/stats/punch_card
+
+GET /repos/:owner/:repo/statuses/:ref
+POST /repos/:owner/:repo/statuses/:sha
+
+// Users
+GET /users/:user
+GET /user
+PATCH /user
+GET /users
+
+GET /user/emails
+POST /user/emails
+DELETE /user/emails
+
+GET /users/:user/followers
+GET /user/followers
+GET /users/:user/following
+GET /user/following
+GET /user/following/:user
+GET /users/:user/following/:target_user
+PUT /user/following/:user
+DELETE /user/following/:user
+
+GET /users/:user/keys
+GET /user/keys
+GET /user/keys/:id
+POST /user/keys
+PATCH /user/keys/:id
+DELETE /user/keys/:id
+
+// Search
+GET /legacy/issues/search/:owner/:repository/:state/:keyword
+GET /legacy/repos/search/:keyword
+GET /legacy/user/search/:keyword
+GET /legacy/user/email/:email
+
+GET /legacy/issues/search/:owner/:repository/:state/:keyword
+GET /legacy/repos/search/:keyword
+GET /legacy/user/search/:keyword
+GET /legacy/user/email/:email
+
+// Gitignore
+GET /gitignore/templates
+GET /gitignore/templates/:name
+
+// Markdown
+POST /markdown
+POST /markdown/raw
+
+
+<#}); 
+PopIndent();
+#>
+	}
+}
+
+<#+
+	public void AddressFormats( Action action )
+	{
+		var formatsStart = GenerationEnvironment.Length;
+		action();
+		var formats = GenerationEnvironment
+			.ToString(formatsStart, GenerationEnvironment.Length - formatsStart );
+		GenerationEnvironment.Length = formatsStart;
+
+		var lines = formats.Split( new []{ Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries );
+		foreach( var g in lines
+			.Select( line => line.Split( new []{' '}, StringSplitOptions.RemoveEmptyEntries  ) )
+			.Where( part=>part.Length>=2 && part[0]!="//" )
+			.Select( part=> new {address = part[1], method=part[0] } )
+			.GroupBy( p=> p.address ) )
+		{
+#>
+///<summary>
+/// <#=g.Key#>
+///</summary>
+public static string <#=MethodName(g.Key)#>( <#=MakeParams(g.Key)#> )
+{
+	return string.Format("<#=MakeFormat(g.Key)#>" <#=MakeFormatArg(g.Key)#> );
+}
+<#+
+		}
+	}
+
+	string MethodName( string addr )
+	{
+		Func<string,string> upperFirst = (str)=> char.ToUpper(str[0])+str.Substring(1);
+
+		var words = addr.Split( new []{'/'}, StringSplitOptions.RemoveEmptyEntries );
+		return string.Join( "", words.Select( s => upperFirst(s.TrimStart(':'))) );
+	}
+
+	string MakeParams( string addr )
+	{
+		var words = addr.Split( new []{'/'}, StringSplitOptions.RemoveEmptyEntries );
+		return string.Join( ", ", 
+			words.Where(w=> w.StartsWith(":") )
+				 .Select( w => string.Format( "string @{0}", w.TrimStart(':') ) ) );
+	}
+	
+	string MakeFormatArg( string addr )
+	{
+		var words = addr.Split( new []{'/'}, StringSplitOptions.RemoveEmptyEntries );
+		if( !words.Any(w=>w.StartsWith(":") ) ) return "";
+		return ","+ string.Join( ", ", 
+			words.Where(w=> w.StartsWith(":") )
+				 .Select( w => string.Format( "@{0}", w.TrimStart(':') ) ) );
+	}
+
+	string MakeFormat( string addr )
+	{
+		var words = addr.Split( new []{'/'}, StringSplitOptions.RemoveEmptyEntries );
+		var items = words.Where( w=>w.StartsWith(":") ).ToArray();
+		return string.Join( "/",
+			words.Select( w => w.StartsWith(":")
+				? string.Format("{{{0}}}", Array.IndexOf(items,w))
+				: w ));
+	}
+#>

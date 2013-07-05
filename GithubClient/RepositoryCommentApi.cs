@@ -33,8 +33,7 @@ namespace GithubClient
             Contract.Requires(repository!=null);
             Contract.Requires(cancellationToken!=null);
 
-            const string apiAddrFormat = "repos/{0}/{1}/comments";
-            var addr = string.Format(apiAddrFormat, owner, repository);
+            var addr = ApiAddr.ReposOwnerRepoComments(owner, repository);
             return await github.GetJsonObjectAsync<Comment[]>(addr, cancellationToken);
         }
 
@@ -60,8 +59,7 @@ namespace GithubClient
             Contract.Requires(commit!=null);
             Contract.Requires(cancellationToken!=null);
 
-            const string apiAddrFormat = "repos/{0}/{1}/commits/{2}/comments";
-            var addr = string.Format(apiAddrFormat, owner, repository, commit);
+            var addr = ApiAddr.ReposOwnerRepoCommitsShaComments(owner, repository, commit);
             return await github.GetJsonObjectAsync<Comment[]>(addr, cancellationToken);
         }
 
@@ -95,7 +93,7 @@ namespace GithubClient
                     {"body", body},
                 };
             Github.CopyOptions(commitOptions, comment);
-            var apiAddr = string.Format("repos/{0}/{1}/commits/{2}/comments", owner, repository, commit);
+            var apiAddr = ApiAddr.ReposOwnerRepoCommitsShaComments(owner, repository, commit);
             return await github.PostJsonIoAsync<Dictionary<string, object>, Comment>(
                 apiAddr, comment, cancellationToken);
         }
@@ -189,7 +187,7 @@ namespace GithubClient
             string repository,
             string commentId)
         {
-            var apiAddr = string.Format(_commentAddrFormat, owner, repository, commentId);
+            var apiAddr = ApiAddr.ReposOwnerRepoCommentsId(owner, repository, commentId);
             return apiAddr;
         }
     }

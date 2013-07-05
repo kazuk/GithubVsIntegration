@@ -64,6 +64,104 @@ namespace GithubClient.Models
   "updated_at": "2011-01-26T19:14:43Z"
 }
 */
+/**** Collaborator
+  
+{
+    "login": "octocat",
+    "id": 1,
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "somehexcode",
+    "url": "https://api.github.com/users/octocat"
+  }
+*/
+/**** Comment
+  
+{
+    "html_url": "https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e#commitcomment-1",
+    "url": "https://api.github.com/repos/octocat/Hello-World/comments/1",
+    "id": 1,
+    "body": "Great stuff",
+    "path": "file1.txt",
+    "position": 4,
+    "line": 14,
+    "commit_id": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "user": 
+{
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "created_at": "2011-04-14T16:00:49Z",
+    "updated_at": "2011-04-14T16:00:49Z"
+  }
+*/
+/**** Issue
+  
+{
+    "url": "https://api.github.com/repos/octocat/Hello-World/issues/1347",
+    "html_url": "https://github.com/octocat/Hello-World/issues/1347",
+    "number": 1347,
+    "state": "open",
+    "title": "Found a bug",
+    "body": "I'm having a problem with this.",
+    "user": 
+{
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "labels": [
+      
+{
+        "url": "https://api.github.com/repos/octocat/Hello-World/labels/bug",
+        "name": "bug",
+        "color": "f29513"
+      }
+    ],
+    "assignee": 
+{
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "milestone": 
+{
+      "url": "https://api.github.com/repos/octocat/Hello-World/milestones/1",
+      "number": 1,
+      "state": "open",
+      "title": "v1.0",
+      "description": "",
+      "creator": 
+{
+        "login": "octocat",
+        "id": 1,
+        "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+        "gravatar_id": "somehexcode",
+        "url": "https://api.github.com/users/octocat"
+      },
+      "open_issues": 4,
+      "closed_issues": 8,
+      "created_at": "2011-04-10T20:09:31Z",
+      "due_on": null
+    },
+    "comments": 0,
+    "pull_request": 
+{
+      "html_url": "https://github.com/octocat/Hello-World/issues/1347",
+      "diff_url": "https://github.com/octocat/Hello-World/issues/1347.diff",
+      "patch_url": "https://github.com/octocat/Hello-World/issues/1347.patch"
+    },
+    "closed_at": null,
+    "created_at": "2011-04-22T13:33:48Z",
+    "updated_at": "2011-04-22T13:33:48Z"
+  }
+*/
 
     public class Authorization
     {
@@ -175,6 +273,46 @@ namespace GithubClient.Models
     	public string @created_at { get; set; }
     	public string @updated_at { get; set; }
     }
+    public class Collaborator
+    {
+    	public string @login { get; set; }
+    	public double @id { get; set; }
+    	public string @avatar_url { get; set; }
+    	public string @gravatar_id { get; set; }
+    	public string @url { get; set; }
+    }
+    public class Comment
+    {
+    	public string @html_url { get; set; }
+    	public string @url { get; set; }
+    	public double @id { get; set; }
+    	public string @body { get; set; }
+    	public string @path { get; set; }
+    	public double @position { get; set; }
+    	public double @line { get; set; }
+    	public string @commit_id { get; set; }
+    	public Collaborator @user { get; set; }
+    	public string @created_at { get; set; }
+    	public string @updated_at { get; set; }
+    }
+    public class Issue
+    {
+    	public string @url { get; set; }
+    	public string @html_url { get; set; }
+    	public double @number { get; set; }
+    	public string @state { get; set; }
+    	public string @title { get; set; }
+    	public string @body { get; set; }
+    	public Collaborator @user { get; set; }
+    	public TempClass0004[] @labels { get; set; }
+    	public Collaborator @assignee { get; set; }
+    	public TempClass0005 @milestone { get; set; }
+    	public double @comments { get; set; }
+    	public TempClass0006 @pull_request { get; set; }
+    	public object @closed_at { get; set; }
+    	public string @created_at { get; set; }
+    	public string @updated_at { get; set; }
+    }
     public class TempClass0001
     {
     	public string @name { get; set; }
@@ -205,5 +343,30 @@ namespace GithubClient.Models
     	public bool @admin { get; set; }
     	public bool @push { get; set; }
     	public bool @pull { get; set; }
+    }
+    public class TempClass0004
+    {
+    	public string @url { get; set; }
+    	public string @name { get; set; }
+    	public string @color { get; set; }
+    }
+    public class TempClass0005
+    {
+    	public string @url { get; set; }
+    	public double @number { get; set; }
+    	public string @state { get; set; }
+    	public string @title { get; set; }
+    	public string @description { get; set; }
+    	public Collaborator @creator { get; set; }
+    	public double @open_issues { get; set; }
+    	public double @closed_issues { get; set; }
+    	public string @created_at { get; set; }
+    	public object @due_on { get; set; }
+    }
+    public class TempClass0006
+    {
+    	public string @html_url { get; set; }
+    	public string @diff_url { get; set; }
+    	public string @patch_url { get; set; }
     }
 }

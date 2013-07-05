@@ -28,7 +28,7 @@ namespace JsonParsers
         public static IEnumerable<JsonObjectType> GetTypeFromFieldNames(IEnumerable<string> fieldNames)
         {
             var fieldNamesArray = fieldNames as string[] ?? fieldNames.ToArray();
-            return _types.Where(objectType => fieldNamesArray.All(objectType.HasField));
+            return _types.OrderByDescending(t=>t.NamedType) .Where(objectType => fieldNamesArray.All(objectType.HasField));
         }
 
         public static JsonObjectType CreateTypeWithName(string name, ObjectValue objectValue)

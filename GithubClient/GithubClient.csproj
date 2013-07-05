@@ -45,7 +45,9 @@
     <Compile Include="Github.cs" />
     <Compile Include="HttpHandlerUtilities\AuthTokenHandler.cs" />
     <Compile Include="HttpHandlerUtilities\BasicAuthHandler.cs" />
+    <Compile Include="HttpHandlerUtilities\HttpClientExtention.cs" />
     <Compile Include="HttpHandlerUtilities\UserAgentHandler.cs" />
+    <Compile Include="IssueApi.cs" />
     <Compile Include="JsonClass.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -53,6 +55,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryApi.cs" />
+    <Compile Include="RepositoryCollabratorApi.cs" />
+    <Compile Include="RepositoryCommentApi.cs" />
     <Compile Include="TokenFactory.cs" />
   </ItemGroup>
   <ItemGroup>

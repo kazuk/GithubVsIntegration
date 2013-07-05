@@ -1,4 +1,5 @@
 ﻿
+// ReSharper disable CheckNamespace
 namespace GithubClient.Models 
 {
 // ReSharper disable InconsistentNaming
@@ -24,6 +25,44 @@ namespace GithubClient.Models
 */
 /**** Repository
 	omit
+*/
+/**** CreateRepositoryResult
+
+{
+  "id": 1296269,
+  "owner": 
+{
+    "login": "octocat",
+    "id": 1,
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "somehexcode",
+    "url": "https://api.github.com/users/octocat"
+  },
+  "name": "Hello-World",
+  "full_name": "octocat/Hello-World",
+  "description": "This your first repo!",
+  "private": false,
+  "fork": false,
+  "url": "https://api.github.com/repos/octocat/Hello-World",
+  "html_url": "https://github.com/octocat/Hello-World",
+  "clone_url": "https://github.com/octocat/Hello-World.git",
+  "git_url": "git://github.com/octocat/Hello-World.git",
+  "ssh_url": "git@github.com:octocat/Hello-World.git",
+  "svn_url": "https://svn.github.com/octocat/Hello-World",
+  "mirror_url": "git://git.example.com/octocat/Hello-World",
+  "homepage": "https://github.com",
+  "language": null,
+  "forks": 9,
+  "forks_count": 9,
+  "watchers": 80,
+  "watchers_count": 80,
+  "size": 108,
+  "master_branch": "master",
+  "open_issues": 0,
+  "pushed_at": "2011-01-26T19:06:43Z",
+  "created_at": "2011-01-26T19:01:12Z",
+  "updated_at": "2011-01-26T19:14:43Z"
+}
 */
 
     public class Authorization
@@ -106,6 +145,35 @@ namespace GithubClient.Models
     	public string @master_branch { get; set; }
     	public string @default_branch { get; set; }
     	public TempClass0003 @permissions { get; set; }
+    }
+    public class CreateRepositoryResult
+    {
+    	public double @id { get; set; }
+    	public TempClass0002 @owner { get; set; }
+    	public string @name { get; set; }
+    	public string @full_name { get; set; }
+    	public string @description { get; set; }
+    	public bool @private { get; set; }
+    	public bool @fork { get; set; }
+    	public string @url { get; set; }
+    	public string @html_url { get; set; }
+    	public string @clone_url { get; set; }
+    	public string @git_url { get; set; }
+    	public string @ssh_url { get; set; }
+    	public string @svn_url { get; set; }
+    	public string @mirror_url { get; set; }
+    	public string @homepage { get; set; }
+    	public object @language { get; set; }
+    	public double @forks { get; set; }
+    	public double @forks_count { get; set; }
+    	public double @watchers { get; set; }
+    	public double @watchers_count { get; set; }
+    	public double @size { get; set; }
+    	public string @master_branch { get; set; }
+    	public double @open_issues { get; set; }
+    	public string @pushed_at { get; set; }
+    	public string @created_at { get; set; }
+    	public string @updated_at { get; set; }
     }
     public class TempClass0001
     {

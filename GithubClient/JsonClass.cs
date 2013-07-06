@@ -97,6 +97,284 @@ namespace GithubClient.Models
     "updated_at": "2011-04-14T16:00:49Z"
   }
 */
+/**** Commit
+
+{
+  "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+  "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+  "commit": 
+{
+    "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "author": 
+{
+      "name": "Monalisa Octocat",
+      "email": "support@github.com",
+      "date": "2011-04-14T16:00:49Z"
+    },
+    "committer": 
+{
+      "name": "Monalisa Octocat",
+      "email": "support@github.com",
+      "date": "2011-04-14T16:00:49Z"
+    },
+    "message": "Fix all the bugs",
+    "tree": 
+{
+      "url": "https://api.github.com/repos/octocat/Hello-World/tree/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+    }
+  },
+  "author": 
+{
+    "login": "octocat",
+    "id": 1,
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "somehexcode",
+    "url": "https://api.github.com/users/octocat"
+  },
+  "committer": 
+{
+    "login": "octocat",
+    "id": 1,
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "somehexcode",
+    "url": "https://api.github.com/users/octocat"
+  },
+  "parents": [
+    
+{
+      "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+    }
+  ],
+  "stats": 
+{
+    "additions": 104,
+    "deletions": 4,
+    "total": 108
+  },
+  "files": [
+    
+{
+      "filename": "file1.txt",
+      "additions": 10,
+      "deletions": 2,
+      "changes": 12,
+      "status": "modified",
+      "raw_url": "https://github.com/octocat/Hello-World/raw/7ca483543807a51b6079e54ac4cc392bc29ae284/file1.txt",
+      "blob_url": "https://github.com/octocat/Hello-World/blob/7ca483543807a51b6079e54ac4cc392bc29ae284/file1.txt",
+      "patch": "@@ -29,7 +29,7 @@\n....."
+    }
+  ]
+}
+*/
+/**** CompareCommitResult
+
+{
+  "url": "https://api.github.com/repos/octocat/Hello-World/compare/master...topic",
+  "html_url": "https://github.com/octocat/Hello-World/compare/master...topic",
+  "permalink_url": "https://github.com/octocat/Hello-World/compare/octocat:bbcd538c8e72b8c175046e27cc8f907076331401...octocat:0328041d1152db8ae77652d1618a02e57f745f17",
+  "diff_url": "https://github.com/octocat/Hello-World/compare/master...topic.diff",
+  "patch_url": "https://github.com/octocat/Hello-World/compare/master...topic.patch",
+  "base_commit": 
+{
+    "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "commit": 
+{
+      "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "author": 
+{
+        "name": "Monalisa Octocat",
+        "email": "support@github.com",
+        "date": "2011-04-14T16:00:49Z"
+      },
+      "committer": 
+{
+        "name": "Monalisa Octocat",
+        "email": "support@github.com",
+        "date": "2011-04-14T16:00:49Z"
+      },
+      "message": "Fix all the bugs",
+      "tree": 
+{
+        "url": "https://api.github.com/repos/octocat/Hello-World/tree/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+        "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+      }
+    },
+    "author": 
+{
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "committer": 
+{
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "parents": [
+      
+{
+        "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+        "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+      }
+    ]
+  },
+  "status": "behind",
+  "ahead_by": 1,
+  "behind_by": 2,
+  "total_commits": 1,
+  "commits": [
+    
+{
+      "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "commit": 
+{
+        "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+        "author": 
+{
+          "name": "Monalisa Octocat",
+          "email": "support@github.com",
+          "date": "2011-04-14T16:00:49Z"
+        },
+        "committer": 
+{
+          "name": "Monalisa Octocat",
+          "email": "support@github.com",
+          "date": "2011-04-14T16:00:49Z"
+        },
+        "message": "Fix all the bugs",
+        "tree": 
+{
+          "url": "https://api.github.com/repos/octocat/Hello-World/tree/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+          "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+        }
+      },
+      "author": 
+{
+        "login": "octocat",
+        "id": 1,
+        "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+        "gravatar_id": "somehexcode",
+        "url": "https://api.github.com/users/octocat"
+      },
+      "committer": 
+{
+        "login": "octocat",
+        "id": 1,
+        "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+        "gravatar_id": "somehexcode",
+        "url": "https://api.github.com/users/octocat"
+      },
+      "parents": [
+        
+{
+          "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+          "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+        }
+      ]
+    }
+  ],
+  "files": [
+    
+{
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "filename": "file1.txt",
+      "status": "added",
+      "additions": 103,
+      "deletions": 21,
+      "changes": 124,
+      "blob_url": "https://github.com/octocat/Hello-World/blob/6dcb09b5b57875f334f61aebed695e2e4193db5e/file1.txt",
+      "raw_url": "https://github.com/octocat/Hello-World/raw/6dcb09b5b57875f334f61aebed695e2e4193db5e/file1.txt",
+      "patch": "@@ -132,7 +132,7 @@ module Test @@ -1000,7 +1000,7 @@ module Test"
+    }
+  ]
+}
+*/
+/**** Content
+
+{
+  "type": "file",
+  "target": "/path/to/symlink/target",
+  "submodule_git_url": "git://github.com/jquery/qunit.git",
+  "encoding": "base64",
+  "size": 5362,
+  "name": "README.md",
+  "path": "README.md",
+  "content": "encoded content ...",
+  "sha": "3d21ec53a331a6f037a91c368710b99387d012c1",
+  "url": "https://api.github.com/repos/pengwynn/octokit/contents/README.md",
+  "git_url": "https://api.github.com/repos/pengwynn/octokit/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+  "html_url": "https://github.com/pengwynn/octokit/blob/master/README.md",
+  "_links": 
+{
+    "git": "https://api.github.com/repos/pengwynn/octokit/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+    "self": "https://api.github.com/repos/pengwynn/octokit/contents/README.md",
+    "html": "https://github.com/pengwynn/octokit/blob/master/README.md"
+  }
+}
+*/
+/**** FileEditResult
+
+{
+  "content": 
+{
+    "name": "hello.txt",
+    "path": "notes/hello.txt",
+    "sha": "95b966ae1c166bd92f8ae7d1c313e738c731dfc3",
+    "size": 9,
+    "url": "https://api.github.com/repos/octocat/Hello-World/contents/notes/hello.txt",
+    "html_url": "https://github.com/octocat/Hello-World/blob/master/notes/hello.txt",
+    "git_url": "https://api.github.com/repos/octocat/Hello-World/git/blobs/95b966ae1c166bd92f8ae7d1c313e738c731dfc3",
+    "type": "file",
+    "_links": 
+{
+      "self": "https://api.github.com/repos/octocat/Hello-World/contents/notes/hello.txt",
+      "git": "https://api.github.com/repos/octocat/Hello-World/git/blobs/95b966ae1c166bd92f8ae7d1c313e738c731dfc3",
+      "html": "https://github.com/octocat/Hello-World/blob/master/notes/hello.txt"
+    }
+  },
+  "commit": 
+{
+    "sha": "7638417db6d59f3c431d3e1f261cc637155684cd",
+    "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/7638417db6d59f3c431d3e1f261cc637155684cd",
+    "html_url": "https://github.com/octocat/Hello-World/git/commit/7638417db6d59f3c431d3e1f261cc637155684cd",
+    "author": 
+{
+      "date": "2010-04-10T14:10:01-07:00",
+      "name": "Scott Chacon",
+      "email": "schacon@gmail.com"
+    },
+    "committer": 
+{
+      "date": "2010-04-10T14:10:01-07:00",
+      "name": "Scott Chacon",
+      "email": "schacon@gmail.com"
+    },
+    "message": "my commit message",
+    "tree": 
+{
+      "url": "https://api.github.com/repos/octocat/Hello-World/git/trees/691272480426f78a0138979dd3ce63b77f706feb",
+      "sha": "691272480426f78a0138979dd3ce63b77f706feb"
+    },
+    "parents": [
+      
+{
+        "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/1acc419d4d6a9ce985db7be48c6349a0475975b5",
+        "html_url": "https://github.com/octocat/Hello-World/git/commit/1acc419d4d6a9ce985db7be48c6349a0475975b5",
+        "sha": "1acc419d4d6a9ce985db7be48c6349a0475975b5"
+      }
+    ]
+  }
+}
+*/
 /**** Issue
   
 {
@@ -247,7 +525,7 @@ namespace GithubClient.Models
     public class CreateRepositoryResult
     {
     	public double @id { get; set; }
-    	public TempClass0002 @owner { get; set; }
+    	public Collaborator @owner { get; set; }
     	public string @name { get; set; }
     	public string @full_name { get; set; }
     	public string @description { get; set; }
@@ -295,6 +573,53 @@ namespace GithubClient.Models
     	public string @created_at { get; set; }
     	public string @updated_at { get; set; }
     }
+    public class Commit
+    {
+    	public string @url { get; set; }
+    	public string @sha { get; set; }
+    	public TempClass0013 @commit { get; set; }
+    	public Collaborator @author { get; set; }
+    	public Collaborator @committer { get; set; }
+    	public Content[] @parents { get; set; }
+    	public TempClass0007 @stats { get; set; }
+    	public TempClass0011[] @files { get; set; }
+    }
+    public class CompareCommitResult
+    {
+    	public string @url { get; set; }
+    	public string @html_url { get; set; }
+    	public string @permalink_url { get; set; }
+    	public string @diff_url { get; set; }
+    	public string @patch_url { get; set; }
+    	public Commit @base_commit { get; set; }
+    	public string @status { get; set; }
+    	public double @ahead_by { get; set; }
+    	public double @behind_by { get; set; }
+    	public double @total_commits { get; set; }
+    	public Commit[] @commits { get; set; }
+    	public TempClass0011[] @files { get; set; }
+    }
+    public class Content
+    {
+    	public string @type { get; set; }
+    	public string @target { get; set; }
+    	public string @submodule_git_url { get; set; }
+    	public string @encoding { get; set; }
+    	public double @size { get; set; }
+    	public string @name { get; set; }
+    	public string @path { get; set; }
+    	public string @content { get; set; }
+    	public string @sha { get; set; }
+    	public string @url { get; set; }
+    	public string @git_url { get; set; }
+    	public string @html_url { get; set; }
+    	public TempClass0012 @_links { get; set; }
+    }
+    public class FileEditResult
+    {
+    	public Content @content { get; set; }
+    	public TempClass0013 @commit { get; set; }
+    }
     public class Issue
     {
     	public string @url { get; set; }
@@ -304,11 +629,11 @@ namespace GithubClient.Models
     	public string @title { get; set; }
     	public string @body { get; set; }
     	public Collaborator @user { get; set; }
-    	public TempClass0004[] @labels { get; set; }
+    	public TempClass0014[] @labels { get; set; }
     	public Collaborator @assignee { get; set; }
-    	public TempClass0005 @milestone { get; set; }
+    	public TempClass0015 @milestone { get; set; }
     	public double @comments { get; set; }
-    	public TempClass0006 @pull_request { get; set; }
+    	public CompareCommitResult @pull_request { get; set; }
     	public object @closed_at { get; set; }
     	public string @created_at { get; set; }
     	public string @updated_at { get; set; }
@@ -344,13 +669,48 @@ namespace GithubClient.Models
     	public bool @push { get; set; }
     	public bool @pull { get; set; }
     }
-    public class TempClass0004
+    public class TempClass0013
+    {
+    	public string @sha { get; set; }
+    	public string @url { get; set; }
+    	public string @html_url { get; set; }
+    	public TempClass0005 @author { get; set; }
+    	public TempClass0005 @committer { get; set; }
+    	public string @message { get; set; }
+    	public Content @tree { get; set; }
+    	public Content[] @parents { get; set; }
+    }
+    public class TempClass0007
+    {
+    	public double @additions { get; set; }
+    	public double @deletions { get; set; }
+    	public double @total { get; set; }
+    }
+    public class TempClass0011
+    {
+    	public string @sha { get; set; }
+    	public string @filename { get; set; }
+    	public string @status { get; set; }
+    	public double @additions { get; set; }
+    	public double @deletions { get; set; }
+    	public double @changes { get; set; }
+    	public string @blob_url { get; set; }
+    	public string @raw_url { get; set; }
+    	public string @patch { get; set; }
+    }
+    public class TempClass0012
+    {
+    	public string @git { get; set; }
+    	public string @self { get; set; }
+    	public string @html { get; set; }
+    }
+    public class TempClass0014
     {
     	public string @url { get; set; }
     	public string @name { get; set; }
     	public string @color { get; set; }
     }
-    public class TempClass0005
+    public class TempClass0015
     {
     	public string @url { get; set; }
     	public double @number { get; set; }
@@ -363,10 +723,10 @@ namespace GithubClient.Models
     	public string @created_at { get; set; }
     	public object @due_on { get; set; }
     }
-    public class TempClass0006
+    public class TempClass0005
     {
-    	public string @html_url { get; set; }
-    	public string @diff_url { get; set; }
-    	public string @patch_url { get; set; }
+    	public string @name { get; set; }
+    	public string @email { get; set; }
+    	public string @date { get; set; }
     }
 }

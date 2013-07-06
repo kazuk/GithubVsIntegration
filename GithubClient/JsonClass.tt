@@ -116,6 +116,249 @@ RegisterJsonClass( "Comment", ()=>{#>
   }
 <#} );
 
+RegisterJsonClass( "Commit", ()=>{#>
+{
+  "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+  "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+  "commit": {
+    "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "author": {
+      "name": "Monalisa Octocat",
+      "email": "support@github.com",
+      "date": "2011-04-14T16:00:49Z"
+    },
+    "committer": {
+      "name": "Monalisa Octocat",
+      "email": "support@github.com",
+      "date": "2011-04-14T16:00:49Z"
+    },
+    "message": "Fix all the bugs",
+    "tree": {
+      "url": "https://api.github.com/repos/octocat/Hello-World/tree/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+    }
+  },
+  "author": {
+    "login": "octocat",
+    "id": 1,
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "somehexcode",
+    "url": "https://api.github.com/users/octocat"
+  },
+  "committer": {
+    "login": "octocat",
+    "id": 1,
+    "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+    "gravatar_id": "somehexcode",
+    "url": "https://api.github.com/users/octocat"
+  },
+  "parents": [
+    {
+      "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+    }
+  ],
+  "stats": {
+    "additions": 104,
+    "deletions": 4,
+    "total": 108
+  },
+  "files": [
+    {
+      "filename": "file1.txt",
+      "additions": 10,
+      "deletions": 2,
+      "changes": 12,
+      "status": "modified",
+      "raw_url": "https://github.com/octocat/Hello-World/raw/7ca483543807a51b6079e54ac4cc392bc29ae284/file1.txt",
+      "blob_url": "https://github.com/octocat/Hello-World/blob/7ca483543807a51b6079e54ac4cc392bc29ae284/file1.txt",
+      "patch": "@@ -29,7 +29,7 @@\n....."
+    }
+  ]
+}
+<#} );
+
+RegisterJsonClass( "CompareCommitResult", ()=>{#>
+{
+  "url": "https://api.github.com/repos/octocat/Hello-World/compare/master...topic",
+  "html_url": "https://github.com/octocat/Hello-World/compare/master...topic",
+  "permalink_url": "https://github.com/octocat/Hello-World/compare/octocat:bbcd538c8e72b8c175046e27cc8f907076331401...octocat:0328041d1152db8ae77652d1618a02e57f745f17",
+  "diff_url": "https://github.com/octocat/Hello-World/compare/master...topic.diff",
+  "patch_url": "https://github.com/octocat/Hello-World/compare/master...topic.patch",
+  "base_commit": {
+    "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+    "commit": {
+      "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "author": {
+        "name": "Monalisa Octocat",
+        "email": "support@github.com",
+        "date": "2011-04-14T16:00:49Z"
+      },
+      "committer": {
+        "name": "Monalisa Octocat",
+        "email": "support@github.com",
+        "date": "2011-04-14T16:00:49Z"
+      },
+      "message": "Fix all the bugs",
+      "tree": {
+        "url": "https://api.github.com/repos/octocat/Hello-World/tree/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+        "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+      }
+    },
+    "author": {
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "committer": {
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "gravatar_id": "somehexcode",
+      "url": "https://api.github.com/users/octocat"
+    },
+    "parents": [
+      {
+        "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+        "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+      }
+    ]
+  },
+  "status": "behind",
+  "ahead_by": 1,
+  "behind_by": 2,
+  "total_commits": 1,
+  "commits": [
+    {
+      "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "commit": {
+        "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+        "author": {
+          "name": "Monalisa Octocat",
+          "email": "support@github.com",
+          "date": "2011-04-14T16:00:49Z"
+        },
+        "committer": {
+          "name": "Monalisa Octocat",
+          "email": "support@github.com",
+          "date": "2011-04-14T16:00:49Z"
+        },
+        "message": "Fix all the bugs",
+        "tree": {
+          "url": "https://api.github.com/repos/octocat/Hello-World/tree/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+          "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+        }
+      },
+      "author": {
+        "login": "octocat",
+        "id": 1,
+        "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+        "gravatar_id": "somehexcode",
+        "url": "https://api.github.com/users/octocat"
+      },
+      "committer": {
+        "login": "octocat",
+        "id": 1,
+        "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+        "gravatar_id": "somehexcode",
+        "url": "https://api.github.com/users/octocat"
+      },
+      "parents": [
+        {
+          "url": "https://api.github.com/repos/octocat/Hello-World/commits/6dcb09b5b57875f334f61aebed695e2e4193db5e",
+          "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "sha": "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+      "filename": "file1.txt",
+      "status": "added",
+      "additions": 103,
+      "deletions": 21,
+      "changes": 124,
+      "blob_url": "https://github.com/octocat/Hello-World/blob/6dcb09b5b57875f334f61aebed695e2e4193db5e/file1.txt",
+      "raw_url": "https://github.com/octocat/Hello-World/raw/6dcb09b5b57875f334f61aebed695e2e4193db5e/file1.txt",
+      "patch": "@@ -132,7 +132,7 @@ module Test @@ -1000,7 +1000,7 @@ module Test"
+    }
+  ]
+}
+<#} );
+
+RegisterJsonClass( "Content", ()=>{#>
+{
+  "type": "file",
+  "target": "/path/to/symlink/target",
+  "submodule_git_url": "git://github.com/jquery/qunit.git",
+  "encoding": "base64",
+  "size": 5362,
+  "name": "README.md",
+  "path": "README.md",
+  "content": "encoded content ...",
+  "sha": "3d21ec53a331a6f037a91c368710b99387d012c1",
+  "url": "https://api.github.com/repos/pengwynn/octokit/contents/README.md",
+  "git_url": "https://api.github.com/repos/pengwynn/octokit/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+  "html_url": "https://github.com/pengwynn/octokit/blob/master/README.md",
+  "_links": {
+    "git": "https://api.github.com/repos/pengwynn/octokit/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+    "self": "https://api.github.com/repos/pengwynn/octokit/contents/README.md",
+    "html": "https://github.com/pengwynn/octokit/blob/master/README.md"
+  }
+}
+<#} );
+
+RegisterJsonClass( "FileEditResult", ()=>{#>
+{
+  "content": {
+    "name": "hello.txt",
+    "path": "notes/hello.txt",
+    "sha": "95b966ae1c166bd92f8ae7d1c313e738c731dfc3",
+    "size": 9,
+    "url": "https://api.github.com/repos/octocat/Hello-World/contents/notes/hello.txt",
+    "html_url": "https://github.com/octocat/Hello-World/blob/master/notes/hello.txt",
+    "git_url": "https://api.github.com/repos/octocat/Hello-World/git/blobs/95b966ae1c166bd92f8ae7d1c313e738c731dfc3",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/octocat/Hello-World/contents/notes/hello.txt",
+      "git": "https://api.github.com/repos/octocat/Hello-World/git/blobs/95b966ae1c166bd92f8ae7d1c313e738c731dfc3",
+      "html": "https://github.com/octocat/Hello-World/blob/master/notes/hello.txt"
+    }
+  },
+  "commit": {
+    "sha": "7638417db6d59f3c431d3e1f261cc637155684cd",
+    "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/7638417db6d59f3c431d3e1f261cc637155684cd",
+    "html_url": "https://github.com/octocat/Hello-World/git/commit/7638417db6d59f3c431d3e1f261cc637155684cd",
+    "author": {
+      "date": "2010-04-10T14:10:01-07:00",
+      "name": "Scott Chacon",
+      "email": "schacon@gmail.com"
+    },
+    "committer": {
+      "date": "2010-04-10T14:10:01-07:00",
+      "name": "Scott Chacon",
+      "email": "schacon@gmail.com"
+    },
+    "message": "my commit message",
+    "tree": {
+      "url": "https://api.github.com/repos/octocat/Hello-World/git/trees/691272480426f78a0138979dd3ce63b77f706feb",
+      "sha": "691272480426f78a0138979dd3ce63b77f706feb"
+    },
+    "parents": [
+      {
+        "url": "https://api.github.com/repos/octocat/Hello-World/git/commits/1acc419d4d6a9ce985db7be48c6349a0475975b5",
+        "html_url": "https://github.com/octocat/Hello-World/git/commit/1acc419d4d6a9ce985db7be48c6349a0475975b5",
+        "sha": "1acc419d4d6a9ce985db7be48c6349a0475975b5"
+      }
+    ]
+  }
+}
+<#} );
 
 RegisterJsonClass( "Issue", ()=>{#>
   {
@@ -180,6 +423,9 @@ RegisterJsonClass( "Issue", ()=>{#>
 
 <#
 	PushIndent("    ");
+
+	TypeRepository.WalkAllTypes();
+
 	foreach( var type in TypeRepository.NamedTypes() )
 	{
 		RenderJsonClass( type );
@@ -262,7 +508,8 @@ public class <#=type.Name#>
 			Error( "parser returned not ObjectValue");
 		}
 	}
-		public void RegisterJsonArrayClass( string name, Action action )
+
+	public void RegisterJsonArrayClass( string name, Action action )
 	{
 #>
 /**** <#=name#>

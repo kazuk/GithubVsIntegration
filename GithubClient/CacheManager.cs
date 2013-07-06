@@ -28,8 +28,7 @@ namespace GithubClient
         public static void SetCacheProvider(ICacheProvider cacheProvider)
         {
             Contract.Requires(cacheProvider!=null);
-            Contract.Requires(CacheProvider==null);
-            Contract.Ensures(CacheProvider!=null);
+
             _cacheProvider = cacheProvider;
         }
 
@@ -67,9 +66,8 @@ namespace GithubClient
 
             if( cacheControl.NoCache ) return;
             CacheProvider.CreateEntry(
-                new CacheEntry
+                new CacheEntry(requestUri)
                     {
-                        RequestUri = requestUri,
                         Content = content,
                         ETag = eTag,
                         ExpireAt = DateTime.UtcNow.Add(cacheControl.MaxAge ?? TimeSpan.FromSeconds(60))

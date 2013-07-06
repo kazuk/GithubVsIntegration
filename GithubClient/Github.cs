@@ -24,9 +24,12 @@ namespace GithubClient
             Contract.Requires(authToken!=null);
             Contract.Requires(appName!=null);
             Contract.Requires(apiHost!=null);
-
+            var httpClientHandler = new HttpClientHandler
+                {
+                    AllowAutoRedirect = false
+                };
             _apiHost = apiHost + (apiHost.EndsWith("/")?"":"/");
-            _client = new HttpClient( new AuthTokenHandler(authToken,appName));
+            _client = new HttpClient( new AuthTokenHandler(authToken,appName,httpClientHandler));
         }
 
         /// <summary>
@@ -222,6 +225,7 @@ namespace GithubClient
             }
         }
 
+
         /// <summary>
         /// 指定のAPIアドレスに PATCH リクエストを投げ、レスポンスを返します
         /// </summary>
@@ -237,6 +241,20 @@ namespace GithubClient
             return await _client.PatchAsync(requestUri, content, cancellationToken);
         }
 
+        /// <summary>
+        /// 指定のAPIアドレスに DELETE リクエストを投げ、レスポンスを返します
+        /// </summary>
+        /// <param name="apiAddr"></param>
+        /// <param name="content"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        private async Task<HttpResponseMessage> DeleteAsync(string apiAddr,
+                                             HttpContent content,
+                                             CancellationToken cancellationToken)
+        {
+            var requestUri = String.Format("{0}{1}", ApiHost, apiAddr);
+            return await _client.DeleteAsync(requestUri, content, cancellationToken);
+        }
         /// <summary>
         /// 指定のAPIアドレスにDELETEリクエストを投げ、ステータスコードを確認します
         /// </summary>
@@ -283,6 +301,60 @@ namespace GithubClient
             }
         }
 
+        /// <summary>
+        /// 指定のAPIアドレスに PUT リクエストでJSONを投げ、応答JSONを解釈して返します
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <typeparam name="TOutput"></typeparam>
+        /// <param name="apiAddr"></param>
+        /// <param name="putData"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<TOutput> PutJsonIoAsync<TInput, TOutput>(string apiAddr,
+                                TInput putData,
+                                 CancellationToken cancellationToken) where TInput : class
+        {
+            Contract.Requires(apiAddr != null);
+            Contract.Requires(!apiAddr.StartsWith("/"), "apiAddr は / を先頭に持ってはいけない");
+            Contract.Requires(cancellationToken != null);
+            Contract.Requires(putData != null);
+
+            var jsonText = JsonConvert.SerializeObject(putData);
+            var stringContent = new StringContent(jsonText, Encoding.UTF8, "application/json");
+            using (var response = await PutAsync(apiAddr, stringContent, cancellationToken))
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TOutput>(responseContent);
+            }
+        }
+
+        /// <summary>
+        /// 指定のAPIアドレスに PUT リクエストでJSONを投げ、応答JSONを解釈して返します
+        /// </summary>
+        /// <typeparam name="TInput"></typeparam>
+        /// <typeparam name="TOutput"></typeparam>
+        /// <param name="apiAddr"></param>
+        /// <param name="putData"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<TOutput> DeleteJsonIoAsync<TInput, TOutput>(string apiAddr,
+                                TInput putData,
+                                 CancellationToken cancellationToken) where TInput : class
+        {
+            Contract.Requires(apiAddr != null);
+            Contract.Requires(!apiAddr.StartsWith("/"), "apiAddr は / を先頭に持ってはいけない");
+            Contract.Requires(cancellationToken != null);
+            Contract.Requires(putData != null);
+
+            var jsonText = JsonConvert.SerializeObject(putData);
+            var stringContent = new StringContent(jsonText, Encoding.UTF8, "application/json");
+            using (var response = await DeleteAsync(apiAddr, stringContent, cancellationToken))
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<TOutput>(responseContent);
+            }
+        }
+
         public static void CopyOptions(
             IEnumerable<KeyValuePair<string, object>> source,
             IDictionary<string, object> copyTo)
@@ -294,6 +366,24 @@ namespace GithubClient
             }
         }
 
+        /// <summary>
+        /// 指定の apiAddr から HTTP 302 応答の Locationを取得します
+        /// </summary>
+        /// <param name="apiAddr"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task<string> GetLocationAsync(string apiAddr,
+                                             CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
 
+            var requestUri = String.Format("{0}{1}", ApiHost, apiAddr);
+            using (var result = await _client.GetAsync(requestUri, cancellationToken))
+            {
+                return result.StatusCode==HttpStatusCode.Found 
+                    ? result.Headers.Location.ToString() 
+                    : "";
+            }
+        }
     }
 }

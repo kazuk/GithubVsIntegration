@@ -15,6 +15,20 @@ namespace JsonParsers
             _tempCount = 0;
         }
 
+        public static void WalkAllTypes()
+        {
+            var typeRegistered = _types.ToArray();
+            foreach (var jsonObjectType in typeRegistered)
+            {
+                var obj = jsonObjectType.OriginalObject;
+                jsonObjectType.Fields.Clear();
+                foreach (var field in obj.Fields)
+                {
+                    jsonObjectType.Fields.Add(field.Name, new JsonObjectField(field.Value.TypeName));
+                }
+            }
+        }
+
         public static IEnumerable<JsonObjectType> NamedTypes()
         {
             return _types.Where(t => t.NamedType);
@@ -28,12 +42,15 @@ namespace JsonParsers
         public static IEnumerable<JsonObjectType> GetTypeFromFieldNames(IEnumerable<string> fieldNames)
         {
             var fieldNamesArray = fieldNames as string[] ?? fieldNames.ToArray();
-            return _types.OrderByDescending(t=>t.NamedType) .Where(objectType => fieldNamesArray.All(objectType.HasField));
+            return _types.OrderByDescending(t=>t.NamedType).ThenByDescending(t=>t.Fields.Count()).Where(objectType => fieldNamesArray.All(objectType.HasField));
         }
 
         public static JsonObjectType CreateTypeWithName(string name, ObjectValue objectValue)
         {
-            var jsonObjectType = new JsonObjectType(name, true );
+            var jsonObjectType = new JsonObjectType(name, true )
+                {
+                    OriginalObject = objectValue
+                };
             foreach (var field in objectValue.Fields)
             {
                 jsonObjectType.Fields.Add(field.Name, new JsonObjectField(field.Value.TypeName));
@@ -44,7 +61,10 @@ namespace JsonParsers
 
         public static JsonObjectType CreateType(ObjectValue objectValue)
         {
-            var jsonObjectType = new JsonObjectType( CreateTmpolaryName(),false );
+            var jsonObjectType = new JsonObjectType(CreateTmpolaryName(), false)
+                {
+                    OriginalObject = objectValue
+                };
             foreach (var field in objectValue.Fields)
             {
                 jsonObjectType.Fields.Add(field.Name, new JsonObjectField( field.Value.TypeName ) );

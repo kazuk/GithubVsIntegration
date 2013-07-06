@@ -24,5 +24,18 @@ namespace GithubClient.HttpHandlerUtilities
                 };
             return await client.SendAsync(request, cancellationToken);
         }
+
+        public static async Task<HttpResponseMessage> DeleteAsync(
+            this HttpClient client,
+            string requestUri,
+            HttpContent content,
+            CancellationToken cancellationToken)
+        {
+            var request = new HttpRequestMessage( HttpMethod.Delete , requestUri)
+            {
+                Content = content
+            };
+            return await client.SendAsync(request, cancellationToken);
+        }
     }
 }

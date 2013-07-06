@@ -29,6 +29,8 @@ namespace JsonParsers
             get { return _namedType; }
         }
 
+        public ObjectValue OriginalObject { get; set; }
+
         public bool HasField(string fieldName)
         {
             return Fields.ContainsKey(fieldName);

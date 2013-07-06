@@ -5,6 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 // ReSharper disable InconsistentNaming
+using System.Diagnostics.Contracts;
 
 namespace GithubClient
 {
@@ -322,6 +323,9 @@ PopIndent();
 ///</summary>
 public static string <#=MethodName(g.Key)#>( <#=MakeParams(g.Key)#> )
 {
+	<#+ foreach( var para in GetParams(g.Key ) ) { #>
+	Contract.Requires( @<#=para#>!=null );
+	<#+ } #>
 	return string.Format("<#=MakeFormat(g.Key)#>" <#=MakeFormatArg(g.Key)#> );
 }
 <#+
@@ -334,6 +338,12 @@ public static string <#=MethodName(g.Key)#>( <#=MakeParams(g.Key)#> )
 
 		var words = addr.Split( new []{'/'}, StringSplitOptions.RemoveEmptyEntries );
 		return string.Join( "", words.Select( s => upperFirst(s.TrimStart(':'))) );
+	}
+
+	IEnumerable<string> GetParams( string addr )
+	{
+		var words = addr.Split( new []{'/'}, StringSplitOptions.RemoveEmptyEntries );
+		return words.Where(w=> w.StartsWith(":") ).Select( w=>w.TrimStart(':'));
 	}
 
 	string MakeParams( string addr )

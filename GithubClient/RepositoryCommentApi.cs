@@ -185,6 +185,10 @@ namespace GithubClient
             string repository,
             string commentId)
         {
+            Contract.Requires(owner!=null);
+            Contract.Requires(repository!=null);
+            Contract.Requires(commentId!=null);
+
             var apiAddr = ApiAddr.ReposOwnerRepoCommentsId(owner, repository, commentId);
             return apiAddr;
         }

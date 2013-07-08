@@ -209,6 +209,7 @@ DELETE /repos/:owner/:repo/comments/:id
 
 GET /repos/:owner/:repo/commits
 GET /repos/:owner/:repo/commits/:sha
+GET /repos/:owner/:repo/compare/:base
 
 GET /repos/:owner/:repo/readme
 GET /repos/:owner/:repo/contents/:path

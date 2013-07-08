@@ -83,7 +83,7 @@ namespace GithubClient
             CancellationToken cancellationToken)
         {
             var addr = ApiAddr.ReposOwnerRepoContentsPath(owner, repo, path);
-            var fileParams = new Dictionary<string, object>()
+            var fileParams = new Dictionary<string, object>
                 {
                     {"message", message},
                     {"content", content}
@@ -118,7 +118,7 @@ namespace GithubClient
             CancellationToken cancellationToken)
         {
             var addr = ApiAddr.ReposOwnerRepoContentsPath(owner, repo, path);
-            var fileParams = new Dictionary<string, object>()
+            var fileParams = new Dictionary<string, object>
                 {
                     {"message", message},
                     {"content", content},
@@ -152,7 +152,7 @@ namespace GithubClient
             CancellationToken cancellationToken)
         {
             var addr = ApiAddr.ReposOwnerRepoContentsPath(owner, repo, path);
-            var fileParams = new Dictionary<string, object>()
+            var fileParams = new Dictionary<string, object>
                 {
                     {"message", message},
                     {"sha", sha}

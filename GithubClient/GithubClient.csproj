@@ -106,6 +106,10 @@
     <Compile Include="RepositoryCommentApi.cs" />
     <Compile Include="RepositoryCommitApi.cs" />
     <Compile Include="RepositoryContentsApi.cs" />
+    <Compile Include="RepositoryDeployKeysApi.cs" />
+    <Compile Include="RepositoryDownloadsApi.cs" />
+    <Compile Include="RepositoryForksApi.cs" />
+    <Compile Include="RepositoryHookApi.cs" />
     <Compile Include="TokenFactory.cs" />
   </ItemGroup>
   <ItemGroup>

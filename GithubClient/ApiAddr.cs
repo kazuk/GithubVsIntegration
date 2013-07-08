@@ -885,6 +885,16 @@ namespace GithubClient
         		return string.Format("repos/{0}/{1}/commits/{2}" ,@owner, @repo, @sha );
         }
         ///<summary>
+        /// /repos/:owner/:repo/compare/:base
+        ///</summary>
+        public static string ReposOwnerRepoCompareBase( string @owner, string @repo, string @base )
+        {
+        		Contract.Requires( @owner!=null );
+        		Contract.Requires( @repo!=null );
+        		Contract.Requires( @base!=null );
+        		return string.Format("repos/{0}/{1}/compare/{2}" ,@owner, @repo, @base );
+        }
+        ///<summary>
         /// /repos/:owner/:repo/readme
         ///</summary>
         public static string ReposOwnerRepoReadme( string @owner, string @repo )

@@ -64,6 +64,31 @@ namespace GithubClient.Models
   "updated_at": "2011-01-26T19:14:43Z"
 }
 */
+/**** DeployKey
+  
+{
+    "id": 1,
+    "key": "ssh-rsa AAA...",
+    "url": "https://api.github.com/user/keys/1",
+    "title": "octocat@octomac"
+  }
+*/
+/**** Hook
+
+{
+  "name": "web",
+  "active": true,
+  "events": [
+    "push",
+    "pull_request"
+  ],
+  "config": 
+{
+    "url": "http://example.com/webhook",
+    "content_type": "json"
+  }
+}
+*/
 /**** Collaborator
   
 {
@@ -375,6 +400,43 @@ namespace GithubClient.Models
   }
 }
 */
+/**** Download
+  
+{
+    "url": "https://api.github.com/repos/octocat/Hello-World/downloads/1",
+    "html_url": "https://github.com/repos/octocat/Hello-World/downloads/new_file.jpg",
+    "id": 1,
+    "name": "new_file.jpg",
+    "description": "Description of your download",
+    "size": 1024,
+    "download_count": 40,
+    "content_type": ".jpg"
+  }
+*/
+/**** CreateDownloadResult
+
+{
+  "url": "https://api.github.com/repos/octocat/Hello-World/downloads/1",
+  "html_url": "https://github.com/repos/octocat/Hello-World/downloads/new_file.jpg",
+  "id": 1,
+  "name": "new_file.jpg",
+  "description": "Description of your download",
+  "size": 1024,
+  "download_count": 40,
+  "content_type": ".jpg",
+  "policy": "ewogICAg...",
+  "signature": "mwnFDC...",
+  "bucket": "github",
+  "accesskeyid": "1ABCDEFG...",
+  "path": "downloads/octocat/Hello-World/new_file.jpg",
+  "acl": "public-read",
+  "expirationdate": "2011-04-14T16:00:49Z",
+  "prefix": "downloads/octocat/Hello-World/",
+  "mime_type": "image/jpeg",
+  "redirect": false,
+  "s3_url": "https://github.s3.amazonaws.com/"
+}
+*/
 /**** Issue
   
 {
@@ -551,6 +613,20 @@ namespace GithubClient.Models
     	public string @created_at { get; set; }
     	public string @updated_at { get; set; }
     }
+    public class DeployKey
+    {
+    	public double @id { get; set; }
+    	public string @key { get; set; }
+    	public string @url { get; set; }
+    	public string @title { get; set; }
+    }
+    public class Hook
+    {
+    	public string @name { get; set; }
+    	public bool @active { get; set; }
+    	public string[] @events { get; set; }
+    	public CreateDownloadResult @config { get; set; }
+    }
     public class Collaborator
     {
     	public string @login { get; set; }
@@ -577,12 +653,12 @@ namespace GithubClient.Models
     {
     	public string @url { get; set; }
     	public string @sha { get; set; }
-    	public TempClass0013 @commit { get; set; }
+    	public TempClass0014 @commit { get; set; }
     	public Collaborator @author { get; set; }
     	public Collaborator @committer { get; set; }
     	public Content[] @parents { get; set; }
-    	public TempClass0007 @stats { get; set; }
-    	public TempClass0011[] @files { get; set; }
+    	public TempClass0008 @stats { get; set; }
+    	public TempClass0012[] @files { get; set; }
     }
     public class CompareCommitResult
     {
@@ -597,7 +673,7 @@ namespace GithubClient.Models
     	public double @behind_by { get; set; }
     	public double @total_commits { get; set; }
     	public Commit[] @commits { get; set; }
-    	public TempClass0011[] @files { get; set; }
+    	public TempClass0012[] @files { get; set; }
     }
     public class Content
     {
@@ -613,12 +689,45 @@ namespace GithubClient.Models
     	public string @url { get; set; }
     	public string @git_url { get; set; }
     	public string @html_url { get; set; }
-    	public TempClass0012 @_links { get; set; }
+    	public TempClass0013 @_links { get; set; }
     }
     public class FileEditResult
     {
     	public Content @content { get; set; }
-    	public TempClass0013 @commit { get; set; }
+    	public TempClass0014 @commit { get; set; }
+    }
+    public class Download
+    {
+    	public string @url { get; set; }
+    	public string @html_url { get; set; }
+    	public double @id { get; set; }
+    	public string @name { get; set; }
+    	public string @description { get; set; }
+    	public double @size { get; set; }
+    	public double @download_count { get; set; }
+    	public string @content_type { get; set; }
+    }
+    public class CreateDownloadResult
+    {
+    	public string @url { get; set; }
+    	public string @html_url { get; set; }
+    	public double @id { get; set; }
+    	public string @name { get; set; }
+    	public string @description { get; set; }
+    	public double @size { get; set; }
+    	public double @download_count { get; set; }
+    	public string @content_type { get; set; }
+    	public string @policy { get; set; }
+    	public string @signature { get; set; }
+    	public string @bucket { get; set; }
+    	public string @accesskeyid { get; set; }
+    	public string @path { get; set; }
+    	public string @acl { get; set; }
+    	public string @expirationdate { get; set; }
+    	public string @prefix { get; set; }
+    	public string @mime_type { get; set; }
+    	public bool @redirect { get; set; }
+    	public string @s3_url { get; set; }
     }
     public class Issue
     {
@@ -629,9 +738,9 @@ namespace GithubClient.Models
     	public string @title { get; set; }
     	public string @body { get; set; }
     	public Collaborator @user { get; set; }
-    	public TempClass0014[] @labels { get; set; }
+    	public TempClass0015[] @labels { get; set; }
     	public Collaborator @assignee { get; set; }
-    	public TempClass0015 @milestone { get; set; }
+    	public TempClass0016 @milestone { get; set; }
     	public double @comments { get; set; }
     	public CompareCommitResult @pull_request { get; set; }
     	public object @closed_at { get; set; }
@@ -669,24 +778,24 @@ namespace GithubClient.Models
     	public bool @push { get; set; }
     	public bool @pull { get; set; }
     }
-    public class TempClass0013
+    public class TempClass0014
     {
     	public string @sha { get; set; }
     	public string @url { get; set; }
     	public string @html_url { get; set; }
-    	public TempClass0005 @author { get; set; }
-    	public TempClass0005 @committer { get; set; }
+    	public TempClass0006 @author { get; set; }
+    	public TempClass0006 @committer { get; set; }
     	public string @message { get; set; }
     	public Content @tree { get; set; }
     	public Content[] @parents { get; set; }
     }
-    public class TempClass0007
+    public class TempClass0008
     {
     	public double @additions { get; set; }
     	public double @deletions { get; set; }
     	public double @total { get; set; }
     }
-    public class TempClass0011
+    public class TempClass0012
     {
     	public string @sha { get; set; }
     	public string @filename { get; set; }
@@ -698,19 +807,19 @@ namespace GithubClient.Models
     	public string @raw_url { get; set; }
     	public string @patch { get; set; }
     }
-    public class TempClass0012
+    public class TempClass0013
     {
     	public string @git { get; set; }
     	public string @self { get; set; }
     	public string @html { get; set; }
     }
-    public class TempClass0014
+    public class TempClass0015
     {
     	public string @url { get; set; }
     	public string @name { get; set; }
     	public string @color { get; set; }
     }
-    public class TempClass0015
+    public class TempClass0016
     {
     	public string @url { get; set; }
     	public double @number { get; set; }
@@ -723,7 +832,7 @@ namespace GithubClient.Models
     	public string @created_at { get; set; }
     	public object @due_on { get; set; }
     }
-    public class TempClass0005
+    public class TempClass0006
     {
     	public string @name { get; set; }
     	public string @email { get; set; }
